@@ -1,0 +1,35 @@
+<% include ../partials/header %>
+
+    <section id="about">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-8 mx-auto">
+            <h2>Edite sua Série</h2>
+            <form method="post">
+              <div class="form-group">
+                <label for="name">Editar Série</label>
+                <input type="text" class="form-control" id="name" aria-describedby="namelHelp" placeholder="Informe o nome" name="name" value="<%= serie.name %>">
+                <small id="namelHelp" class="form-text text-muted">Nome da Série a ser editado.</small>
+                <% if(errors && errors.indexOf('name')>=0) { %> 
+                  <div class="alert alert-danger" role="alert">
+                    Campo nome da série não pode ser vazio
+                  </div>
+                <% } %>
+              </div>
+              <div class="form-group">
+                <label for="status">Situação</label>
+                <select class="form-control" id="status" name="status">
+                <% labels.forEach( label => { %>
+                  <% if(label.id === serie.status) { %> selected="selected" <% } %>
+                  <option value="<%= label.id %>" <% if(label.id === serie.status) { %> selected="selected" <% } %> > <%= label.name %> </option>
+                <% }) %>
+                </select>
+              </div>
+              <button type="submit" class="btn btn-primary">Salvar</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+
+<% include ../partials/footer %>

@@ -1,0 +1,34 @@
+<% include ../partials/header %>
+
+    <section id="about">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-8 mx-auto">
+            <h2>Nova Série</h2>
+            <form method="post">
+              <div class="form-group">
+                <label for="name">Nome da Série</label>
+                <input type="text" class="form-control" id="name" aria-describedby="namelHelp" placeholder="Informe o nome" name="name">
+                <small id="namelHelp" class="form-text text-muted">Nome da Série a ser salvo.</small> 
+                <% if(errors && errors.indexOf('name')>=0) { %> 
+                  <div class="alert alert-danger" role="alert">
+                    Campo nome da série não pode ser vazio
+                  </div>
+                <% } %>
+              </div>
+              <div class="form-group">
+                <label for="status">Situação</label>
+                <select class="form-control" id="status" name="status">
+                  <option value="para-assistir">Para Assistir</option>
+                  <option value="assistindo">Assistindo</option>
+                  <option value="assistido">Assistido</option>
+                </select>
+              </div>
+              <button type="submit" class="btn btn-primary">Salvar</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+
+<% include ../partials/footer %>

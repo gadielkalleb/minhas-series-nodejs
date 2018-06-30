@@ -1,0 +1,52 @@
+<% include ../partials/header %>
+
+    <section id="about">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-8 mx-auto">
+            <h2>Series</h2>
+            <p class="lead">Todas as series cadastradas <a href="/series/nova" class"btn btn-info">Nova Série</a> </p>
+            <table class="table table-hover">
+            <% results.data.forEach( serie => { %>
+              <tr>
+                <td> 
+                  <a href="/series/info/<%= serie._id %>"> <%= serie.name %> </a> 
+                </td> 
+                <td>
+                  <span class="badge badge-secondary">
+                    <%= labels.filter( label => label.id === serie.status )[0].name %>
+                  </span>
+                </td>
+                <td>
+                  <a href="/series/editar/<%= serie._id %>">Editar |</a>
+                  <a href="/series/excluir/<%= serie._id %>"> Excluir</a>
+                </td>
+              </tr>
+            <%  }) %>
+            </table>
+
+            <nav aria-label="Page navigation example">
+              <ul class="pagination">
+                <li class="page-item">
+                <% if(results.pagination.currentPage>0) { %> 
+                  <a class="page-link" href="/series?page=<%= results.pagination.currentPage-1 %>&pageSize=<%= results.pagination.pageSize %>">Anterior</a>
+                <% } %>
+                </li>
+                <% for(let i = 0; i<results.pagination.pages; i++) { %> 
+                <li class="page-item <% if(i==results.pagination.currentPage) { %> active <% } %>">
+                  <a class="page-link" href="/series?page=<%= i %>=&pageSize=<%= results.pagination.pageSize %>"> <%= i+1 %> </a>
+                </li>
+                <% } %>
+                <li class="page-item">
+                <% if(results.pagination.currentPage < results.pagination.pages -1) { %> 
+                  <a class="page-link" href="/series?page=<%= results.pagination.currentPage+1 %>&pageSize=<%= results.pagination.pageSize %>">Proximo</a>
+                <% } %>
+                </li>
+              </ul>
+            </nav>
+          </div>
+        </div>
+      </div>
+    </section>
+
+<% include ../partials/footer %>

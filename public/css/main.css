@@ -1,0 +1,14 @@
+
+img#img-perfil {
+  width: 85%;
+}
+
+
+@media screen and (max-width: 750px) {
+  img#img-perfil {
+    width: 50%;
+  }
+  img#img-logo {
+    width: 100%;
+  }
+}
